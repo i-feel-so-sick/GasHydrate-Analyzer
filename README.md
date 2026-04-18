@@ -1,4 +1,14 @@
-\<h1 align="center"\>GasHydrate-Analyzer\</h1\>
+<h1 align="center">🧊 GasHydrate-Analyzer</h1>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white" alt="Python" />
+  <img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=flat&logo=pytorch&logoColor=white" alt="PyTorch" />
+  <img src="https://img.shields.io/badge/Pandas-150458?style=flat&logo=pandas&logoColor=white" alt="Pandas" />
+  <img src="https://img.shields.io/badge/NumPy-013243?style=flat&logo=numpy&logoColor=white" alt="NumPy" />
+  <img src="https://img.shields.io/badge/Matplotlib-11557C?style=flat&logo=matplotlib&logoColor=white" alt="Matplotlib" />
+</p>
+
+---
 
 A desktop application and PyTorch model pipeline for processing pressure/temperature CSV data from hydrate installations. Features interactive plotting and automated gas analysis.
 
