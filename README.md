@@ -113,26 +113,47 @@ A desktop application and PyTorch model pipeline for processing pressure/tempera
 **7.7** Значения конечного давления ($P_{fin}$) и конечной температуры ($T_{fin}$) переводим в СИ.
 
 **7.8** Считаем разность давления:
-$$\Delta P=P_{fin}-P_{ini}$$
+
+$$
+\Delta P = P_{fin} - P_{ini}
+$$
 
 **7.9** Считаем разность температуры:
-$$\Delta T=T_{ini}-T_{fin}$$
+
+$$
+\Delta T = T_{ini} - T_{fin}
+$$
 
 **7.10** Считаем объём, занятый раствором ($V_s$).
 
 **7.11** Считаем объём, занятый газом ($V_g$).
 
 **7.12** Считаем массу газа, перешедшего в гидрат ($\Delta m$):
-$$\Delta m=V_g \cdot \mu_{gas} \cdot \frac{\Delta P \cdot T_{ini}-P_{ini} \cdot \Delta T}{R \cdot T_{ini} \cdot \Delta T}$$
+
+$$
+\Delta m = V_g \cdot \mu_{gas} \cdot \frac{\Delta P \cdot T_{ini} - P_{ini} \cdot \Delta T}{R \cdot T_{ini} \cdot \Delta T}
+$$
 
 **7.13** Считаем долю газа, перешедшего в гидрат ($K_g$):
-$$K_g=\frac{\Delta m \cdot 100}{M_g}$$
+
+$$
+K_g = \frac{\Delta m \cdot 100}{M_g}
+$$
 
 **7.14** Считаем коэффициент $K$:
-$$K=\frac{\mu_{gas}}{\mu_{gas}+N \cdot \mu_{solution}}$$
+
+$$
+K = \frac{\mu_{gas}}{\mu_{gas} + N \cdot \mu_{solution}}
+$$
 
 **7.15** Считаем массу образовавшегося гидрата ($m_h$):
-$$m_h=\frac{\Delta m}{K}$$
+
+$$
+m_h = \frac{\Delta m}{K}
+$$
 
 **7.16** Считаем долю раствора, перешедшего в гидрат ($K_s$):
-$$K_s=\frac{m_h \cdot 100}{M_s}$$
+
+$$
+K_s = \frac{m_h \cdot 100}{M_s}
+$$
