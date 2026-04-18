@@ -1,0 +1,68 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "thermoviz"
+version = "2.0.0"
+description = "Desktop app for thermophysical experiment data visualization"
+requires-python = ">=3.10"
+dependencies = [
+    "pandas>=2.0.0",
+    "openpyxl>=3.1.0",
+    "numpy>=1.24.0",
+    "matplotlib>=3.7.0",
+    "seaborn>=0.12.0",
+    "scipy>=1.10.0",
+    "customtkinter>=5.2.0",
+    "tkinterdnd2>=0.3.0",
+    "Pillow>=10.0.0",
+]
+
+[project.scripts]
+thermoviz = "visualize_app.__main__:main"
+
+[dependency-groups]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+    "ruff>=0.9.0",
+    "pyright>=1.1.0",
+    "pre-commit>=4.0.0",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+src = ["src"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
+ignore = ["E501"]
+
+[tool.ruff.lint.isort]
+force-single-line = true
+
+[tool.setuptools.package-dir]
+"" = "src"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["visualize_app*"]
+
+[tool.pyright]
+pythonVersion = "3.10"
+typeCheckingMode = "basic"
+venvPath = "."
+venv = ".venv"
+include = ["src/visualize_app", "main.py"]
+exclude = [
+    "src/visualize_app/ui/main_window_old.py",
+    "src/visualize_app/config/experiment_config.py",
+    "build",
+    "dist",
+    ".venv",
+]
+extraPaths = ["src"]
+reportOptionalMemberAccess = "none"
+reportAttributeAccessIssue = "none"

@@ -1,0 +1,87 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Logs
+logs/
+*.log
+
+# Data files
+data/*.xlsx
+data/*.xls
+data/*.csv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing
+.pytest_cache/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+.hypothesis/
+
+# MyPy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# uv / venv
+.venv/
+.python-version
+.env
+.env.*
+
+# PyInstaller
+*.spec
+
+# Claude Code
+.claude/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Notebooks output (если нужно трекать сами ноутбуки — удали строку выше)
+
+# Tooling caches
+.ruff_cache/
+.pre-commit-cache/
+.tox/
+.nox/
+.cache/
+
+# Frontend dependencies and build output
+web_app/frontend/node_modules/
+web_app/frontend/.vite/
+web_app/frontend/*.tsbuildinfo
