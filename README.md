@@ -31,6 +31,7 @@ A desktop application and PyTorch model pipeline for processing pressure/tempera
 $$
 \mu_{mix} = (x_1 \cdot \mu_1) + (x_2 \cdot \mu_2),
 $$
+
 где $x_1$ и $x_2$ — это молярные доли газов (от 0 до 1, то есть проценты, поделенные на 100)
 
 ## 3\. Выбор промоутера
@@ -159,6 +160,7 @@ $$
 $$
 K = \frac{\mu_{gas}}{\mu_{gas} + N \cdot \mu_{solution}},
 $$
+
 где N - cтехиометрическое число гидратации
 
 **7.15** Считаем массу образовавшегося гидрата ($m_h$):
