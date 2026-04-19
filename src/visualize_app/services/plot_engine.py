@@ -9,7 +9,6 @@ from typing import List
 from typing import Optional
 
 import matplotlib.pyplot as plt
-import seaborn as sns
 from matplotlib.figure import Figure
 
 from visualize_app.models import ExperimentalData
@@ -18,7 +17,7 @@ from visualize_app.models import PlotSettings
 logger = logging.getLogger(__name__)
 
 # Set style
-sns.set_style("whitegrid")
+plt.style.use("seaborn-v0_8-whitegrid")
 plt.rcParams["font.family"] = "DejaVu Sans"
 plt.rcParams["axes.unicode_minus"] = False
 
@@ -27,7 +26,7 @@ class PlotEngine:
     """Advanced plotting engine with multiple visualization types."""
 
     # Color palette for consistent styling
-    COLOR_PALETTE = sns.color_palette("husl", 8)
+    COLOR_PALETTE = list(plt.get_cmap("tab10").colors[:8])
 
     def __init__(self, settings: Optional[PlotSettings] = None):
         """Initialize plot engine with optional settings."""

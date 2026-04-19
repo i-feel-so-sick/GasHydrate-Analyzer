@@ -16,7 +16,6 @@ import logging
 from typing import Optional
 
 import matplotlib.pyplot as plt
-import seaborn as sns
 from matplotlib.figure import Figure
 
 from visualize_app.models import PlotSettings
@@ -24,7 +23,7 @@ from visualize_app.services.solubility_engine import SolubilityResult
 
 logger = logging.getLogger(__name__)
 
-sns.set_style("whitegrid")
+plt.style.use("seaborn-v0_8-whitegrid")
 plt.rcParams["font.family"] = "DejaVu Sans"
 plt.rcParams["axes.unicode_minus"] = False
 
