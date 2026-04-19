@@ -85,3 +85,5 @@ dmypy.json
 web_app/frontend/node_modules/
 web_app/frontend/.vite/
 web_app/frontend/*.tsbuildinfo
+
+.understand-anything/
