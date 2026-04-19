@@ -11,6 +11,20 @@
 - `uv`
 - Node.js `18+`
 - `npm`
+- Docker Desktop или Docker Engine + Docker Compose plugin для запуска через контейнеры
+
+## Структура конфигурации
+
+В `web_app` используются три набора `.env`-файлов:
+
+- `web_app/.env` — переменные для `docker compose`
+- `web_app/backend/.env` — переменные backend-приложения
+- `web_app/frontend/.env` — переменные frontend-приложения
+
+Если используете Docker Compose, держите значения портов синхронными:
+
+- `web_app/.env` → `BACKEND_PORT` должен совпадать с `web_app/backend/.env` → `PORT`
+- `web_app/.env` → `FRONTEND_PORT` должен совпадать с `web_app/frontend/.env` → `VITE_DEV_PORT`
 
 ## Установка `uv`
 
@@ -143,6 +157,75 @@ cd /Users/igorzolotyh/teplophysica/GasHydrate-Analyzer/web_app/frontend
 npm install
 ```
 
+## Запуск через Docker Compose
+
+Для web-приложения подготовлены:
+
+- [web_app/docker-compose.yml](/Users/igorzolotyh/teplophysica/GasHydrate-Analyzer/web_app/docker-compose.yml)
+- [web_app/backend/Dockerfile](/Users/igorzolotyh/teplophysica/GasHydrate-Analyzer/web_app/backend/Dockerfile)
+- [web_app/frontend/Dockerfile](/Users/igorzolotyh/teplophysica/GasHydrate-Analyzer/web_app/frontend/Dockerfile)
+
+### 1. Подготовка `.env`-файлов
+
+Из корня репозитория:
+
+```bash
+cp web_app/.env.example web_app/.env
+cp web_app/backend/.env.example web_app/backend/.env
+cp web_app/frontend/.env.example web_app/frontend/.env
+```
+
+В Windows PowerShell:
+
+```powershell
+Copy-Item .\web_app\.env.example .\web_app\.env
+Copy-Item .\web_app\backend\.env.example .\web_app\backend\.env
+Copy-Item .\web_app\frontend\.env.example .\web_app\frontend\.env
+```
+
+### 2. Проверка портов
+
+Перед запуском убедитесь, что значения совпадают:
+
+- `web_app/.env`: `BACKEND_PORT=8000`, `FRONTEND_PORT=5173`
+- `web_app/backend/.env`: `PORT=8000`
+- `web_app/frontend/.env`: `VITE_DEV_PORT=5173`
+
+Если меняете порты, меняйте их во всех соответствующих файлах.
+
+### 3. Запуск
+
+macOS и Linux:
+
+```bash
+cd /Users/igorzolotyh/teplophysica/GasHydrate-Analyzer/web_app
+docker compose up --build
+```
+
+Windows PowerShell:
+
+```powershell
+cd C:\path\to\GasHydrate-Analyzer\web_app
+docker compose up --build
+```
+
+После запуска:
+
+- frontend: `http://localhost:5173`
+- backend: `http://localhost:8000`
+
+### 4. Остановка
+
+```bash
+docker compose down
+```
+
+Удаление контейнеров вместе с томом `node_modules` frontend:
+
+```bash
+docker compose down -v
+```
+
 ## Переменные окружения
 
 ### Backend
@@ -189,6 +272,19 @@ Copy-Item .\web_app\frontend\.env.example .\web_app\frontend\.env
 - `VITE_DEV_PORT`
 - `VITE_BACKEND_URL`
 - `VITE_API_BASE`
+
+### Docker Compose
+
+Docker Compose читает переменные из `web_app/.env`.
+
+Поддерживаются:
+
+- `COMPOSE_PROJECT_NAME`
+- `BACKEND_HOST`
+- `BACKEND_PORT`
+- `BACKEND_RELOAD`
+- `FRONTEND_HOST`
+- `FRONTEND_PORT`
 
 ## Запуск приложения
 
@@ -281,6 +377,16 @@ cd C:\path\to\GasHydrate-Analyzer\web_app\frontend
 $env:VITE_BACKEND_URL="http://localhost:8001"
 npm run dev
 ```
+
+## Docker-файлы
+
+- backend-контейнер ставит зависимости в два слоя:
+- базовые зависимости проекта из корневого `pyproject.toml`, потому что backend использует модули из `src/visualize_app`
+- web-зависимости из `web_app/backend/requirements.txt` для `FastAPI` и сопутствующего runtime
+- frontend-контейнер ставит зависимости через `npm ci`
+- в Docker Compose backend и frontend запускаются в dev-режиме с bind mount
+- backend healthcheck проверяет `GET /api/health`
+- frontend обращается к backend внутри Docker-сети по адресу `http://backend:<BACKEND_PORT>`
 
 ## Быстрый старт с нуля
 

@@ -61,6 +61,10 @@ dmypy.json
 .python-version
 .env
 .env.*
+!.env.example
+!web_app/.env.example
+!web_app/backend/.env.example
+!web_app/frontend/.env.example
 
 # PyInstaller
 *.spec
@@ -87,3 +91,8 @@ web_app/frontend/.vite/
 web_app/frontend/*.tsbuildinfo
 
 .understand-anything/
+
+# Graphify
+.graphify_detect.json
+graphify-out/
+AGENTS.md
